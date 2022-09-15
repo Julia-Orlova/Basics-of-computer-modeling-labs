@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 # дані спостережень
 x_observed = [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5]
@@ -47,6 +48,7 @@ for n in range(0, 20):
         best_b = find_b(n)
 
 # вивід результатів
+print('Значення критерію найменших квадратів =', float(min))
 print('y = b0 + b1 / x  + b2 / x ** 2 + ... + bn / x ** n')
 print('Значення коефіцієнтів bі при найкращій моделі:')
 
@@ -69,3 +71,9 @@ print('Значення y при знайдених bі:')
 print([round((float(f_of_x_and_b(x_observed[i], best_b))), 3) for i in range(len(x_observed))])
 print('Спостережувані y:')
 print(y_observed)
+
+plt.plot(x_observed, [f_of_x_and_b(x_observed[i], best_b) for i in range(len(x_observed))],
+         color='orange', label='Графік отриманої функції')
+plt.plot(x_observed, y_observed, linestyle='--', color='green', label='Графік даних спостережень')
+plt.legend()
+plt.show()
